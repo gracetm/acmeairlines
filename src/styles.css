@@ -145,9 +145,9 @@ h2 { font-size: 36px; line-height: 1.3; font-weight: 800; letter-spacing: -.025e
 .action-dialog { position: fixed; inset: 0; width: min(520px, calc(100% - 32px)); max-height: calc(100dvh - 40px); padding: 0; margin: auto; overflow-y: auto; border: 1px solid #dae5e9; border-radius: 20px; background: white; color: #151515; box-shadow: 0 24px 100px #17363c38; }
 .action-dialog::backdrop { background: #17303870; backdrop-filter: blur(4px); }
 .space-celebration { position: fixed; inset: 0; z-index: 50; display: grid; place-items: center; overflow: hidden; pointer-events: none; background: radial-gradient(circle at center, rgb(40 32 80 / 22%), transparent 50%); }
-.buzz-lightyear { position: relative; z-index: 2; width: min(700px, 78vw); max-height: 72vh; object-fit: contain; border-radius: 14px; box-shadow: 0 0 80px rgb(210 74 225 / 32%); animation: buzz-pinwheel 1.15s cubic-bezier(.16,1,.3,1) both; }
+.buzz-lightyear { position: relative; z-index: 2; width: min(700px, 78vw); max-height: 72vh; object-fit: contain; border-radius: 14px; box-shadow: 0 0 80px rgb(210 74 225 / 32%); animation: buzz-pinwheel 4.8s cubic-bezier(.16,1,.3,1) .12s both; }
 .space-fireworks, .space-cursor-sparkles { position: absolute; inset: 0; pointer-events: none; }
-.burst-particle { position: absolute; top: 50%; left: 50%; display: grid; place-items: center; width: 14px; height: 14px; color: #f6d27f; opacity: 0; animation: burst-particle 1.2s var(--burst-delay) cubic-bezier(.16,1,.3,1) both; }
+.burst-particle { position: absolute; top: 50%; left: 50%; display: grid; place-items: center; width: 17px; height: 17px; color: #f6d27f; opacity: 0; animation: burst-particle 1.4s var(--burst-delay) cubic-bezier(.16,1,.3,1) both; }
 .burst-star { border-radius: 3px; background: currentColor; box-shadow: 0 0 12px 3px rgb(246 210 127 / 70%); }
 .burst-rocket { color: #f3b9e6; filter: drop-shadow(0 0 7px rgb(243 185 230 / 80%)); }
 .dialog-inner { position: relative; padding: 35px; }
@@ -169,8 +169,8 @@ h2 { font-size: 36px; line-height: 1.3; font-weight: 800; letter-spacing: -.025e
 @keyframes plane-cruise { 0%, 100% { transform: translateX(-50%) translateY(0) rotate(4deg); } 50% { transform: translateX(-50%) translateY(-7px) rotate(4deg); } }
 @keyframes result-arrive { from { opacity: 0; transform: translateY(-6px) scale(.985); } to { opacity: 1; transform: translateY(0) scale(1); } }
 @keyframes sparkle-trail { 0% { opacity: .8; transform: scale(.55) rotate(45deg); } 55% { opacity: .65; transform: scale(1) rotate(135deg) translateY(-4px); } 100% { opacity: 0; transform: scale(.2) rotate(225deg) translateY(-12px); } }
-@keyframes buzz-pinwheel { 0% { opacity: 0; transform: scale(.05) rotate(-420deg); } 60% { opacity: 1; transform: scale(1.08) rotate(18deg); } 100% { opacity: 1; transform: scale(1) rotate(0); } }
-@keyframes burst-particle { 0% { opacity: 0; transform: rotate(var(--burst-angle)) translateY(0) scale(.2); } 14% { opacity: 1; } 100% { opacity: 0; transform: rotate(var(--burst-angle)) translateY(calc(var(--burst-distance) * -1)) scale(1); } }
+@keyframes buzz-pinwheel { 0% { opacity: 0; transform: scale(.04) rotate(-540deg); } 18% { opacity: 1; transform: scale(.48) rotate(-350deg); } 48% { opacity: 1; transform: scale(1) rotate(-150deg); } 66% { opacity: 1; transform: scale(1.04) rotate(0); } 78% { opacity: 1; transform: translate(9vw, -2vh) scale(.9) rotate(90deg); } 100% { opacity: 0; transform: translate(78vw, -46vh) scale(.16) rotate(500deg); } }
+@keyframes burst-particle { 0% { opacity: 0; transform: rotate(var(--burst-angle)) translateY(0) scale(.15); } 10% { opacity: 1; transform: rotate(var(--burst-angle)) translateY(-18px) scale(1.05); } 100% { opacity: 0; transform: rotate(var(--burst-angle)) translateY(calc(var(--burst-distance) * -1)) scale(.2); } }
 @keyframes lantern-flicker { 0%, 100% { opacity: .5; transform: translateY(0); } 50% { opacity: 1; transform: translateY(-3px); } }
 @keyframes lantern-flicker { 0%, 100% { opacity: .5; transform: translateY(0); } 50% { opacity: 1; transform: translateY(-3px); } }
 @keyframes route-pulse { from { transform: rotate(45deg) scale(1); } to { transform: rotate(45deg) scale(1.13); } }

@@ -46,10 +46,10 @@ export function ActionDialog({ content, onClose, onSpaceActivate }: { content: D
     window.addEventListener('pointermove', handlePointer);
     return () => window.removeEventListener('pointermove', handlePointer);
   }, [submitted, isSpace]);
-  const burstParticles = Array.from({ length: 18 }, (_, index) => ({
-    angle: `${index * 20}deg`,
-    distance: `${190 + (index % 3) * 55}px`,
-    delay: `${index * 18}ms`,
+  const burstParticles = Array.from({ length: 28 }, (_, index) => ({
+    angle: `${index * 12.85}deg`,
+    distance: `${210 + (index % 4) * 48}px`,
+    delay: `${index * 8}ms`,
   }));
   return <dialog ref={ref} className="action-dialog" onCancel={onClose} onClick={event => { if (event.target === event.currentTarget) onClose(); }} aria-labelledby="dialog-title">
     {content && <div className={`dialog-inner ${isSpace ? 'space-dialog-inner' : ''}`}>
