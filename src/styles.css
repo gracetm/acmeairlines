@@ -145,10 +145,10 @@ h2 { font-size: 36px; line-height: 1.3; font-weight: 800; letter-spacing: -.025e
 .action-dialog { position: fixed; inset: 0; width: min(520px, calc(100% - 32px)); max-height: calc(100dvh - 40px); padding: 0; margin: auto; overflow-y: auto; border: 1px solid #dae5e9; border-radius: 20px; background: white; color: #151515; box-shadow: 0 24px 100px #17363c38; }
 .action-dialog::backdrop { background: #17303870; backdrop-filter: blur(4px); }
 .space-success-message { position: relative; min-height: 170px; color: #151515; }
-.space-success-copy { position: relative; z-index: 5; padding-top: 16px; }
+.space-success-copy { position: relative; z-index: 5; padding-top: 16px; pointer-events: auto; }
 .space-success-copy h2 { font-size: 30px; color: #151515; }
 .space-success-copy p { margin-top: 12px; color: #566268; font-size: 15px; line-height: 1.6; }
-.space-celebration { position: fixed; inset: 0; z-index: 1; display: grid; place-items: center; overflow: hidden; pointer-events: none; background: radial-gradient(circle at center, rgb(40 32 80 / 22%), transparent 50%); }
+.space-celebration { position: fixed; inset: 0; z-index: 6; display: grid; place-items: center; overflow: hidden; pointer-events: none; background: radial-gradient(circle at center, rgb(40 32 80 / 22%), transparent 50%); }
 .buzz-flight { position: relative; z-index: 2; animation: buzz-flight 6.2s cubic-bezier(.16,1,.3,1) .12s both; }
 .buzz-wiggle { animation: buzz-wiggle 1.6s ease-in-out 1.3s 2 both; }
 .buzz-lightyear { position: relative; display: block; width: min(700px, 78vw); max-height: 72vh; object-fit: contain; border-radius: 14px; box-shadow: 0 0 80px rgb(210 74 225 / 32%); animation: buzz-pinwheel .95s cubic-bezier(.16,1,.3,1) .12s both; }
