@@ -26,7 +26,7 @@ Tests use an installed Google Chrome browser. Install Chrome or update `playwrig
 - Cloud-and-airplane hero with destination search, matching results, and empty states.
 - Domestic/international destination and flight-route toggles with distinct imagery.
 - Singapore-first departure selector with alternate country and airport options.
-- A quiet “Space” search easter egg plus tiny cloud constellation and lantern-light details.
+- A quiet “Space” search easter egg with a small animated rocket scene and a mouse-only pixie-dust trail in the hero.
 - Accessible FAQ disclosures, mobile navigation, and native dialogs.
 - Local trip planning, registration, sign-in, support, partnership, and newsletter demos.
 - Testimonials, app badges, a generated QR code, and the complete footer.

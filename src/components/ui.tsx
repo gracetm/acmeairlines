@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react';
-import { ArrowRight, CheckCircle2, X } from 'lucide-react';
+import { ArrowRight, CheckCircle2, Rocket, X } from 'lucide-react';
 import { airports, type TravelScope } from '../data';
 
 export function SectionHeading({ title, children }: { title: string; children: ReactNode }) {
@@ -26,12 +26,14 @@ export function ActionDialog({ content, onClose }: { content: DialogContent | nu
   }, [content]);
   const isAuth = content?.kind === 'signin' || content?.kind === 'register';
   const isFlight = content?.kind === 'flight';
+  const isSpace = content?.destination === 'Space';
   const departure = airports.find(airport => airport.code === departureCode) ?? airports[0];
   const isForm = content && !['info', 'download'].includes(content.kind);
   return <dialog ref={ref} className="action-dialog" onCancel={onClose} onClick={event => { if (event.target === event.currentTarget) onClose(); }} aria-labelledby="dialog-title">
-    {content && <div className="dialog-inner">
+    {content && <div className={`dialog-inner ${isSpace ? 'space-dialog-inner' : ''}`}>
       <button type="button" className="icon-button dialog-close" onClick={onClose} aria-label="Close dialog"><X size={21} /></button>
       <span className="brand">Acme Air</span>
+      {isSpace && <div className="space-scene" aria-hidden="true"><span className="space-star star-one" /><span className="space-star star-two" /><span className="space-star star-three" /><Rocket size={33} strokeWidth={1.5} /></div>}
       <h2 id="dialog-title">{content.title}</h2>
       <p className="dialog-description">{content.description ?? (isFlight ? `Plan your journey from ${departure.city} to ${content.destination}.` : 'A little closer to your next adventure.')}</p>
       {submitted ? <div className="success-message" role="status"><CheckCircle2 size={30} /><h3>{isFlight ? 'Your trip is ready to explore' : 'You’re all set!'}</h3><p>{isFlight ? 'Your route and dates have been selected. Live fares and booking will be available when a flight provider is connected.' : 'Thanks for trying Acme Air. This demo has not sent or saved your information.'}</p><button className="button mt-5" onClick={onClose}>Keep exploring</button></div> : isForm ? <form className="dialog-form" onSubmit={event => { event.preventDefault(); setSubmitted(true); }}>

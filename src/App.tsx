@@ -1,4 +1,4 @@
-import { useEffect, useState, type FormEvent, type PointerEvent } from 'react';
+import { useEffect, useRef, useState, type FormEvent, type PointerEvent } from 'react';
 import { ArrowRight, CalendarDays, Facebook, Instagram, Linkedin, Menu, Mic, Plane, Plus, Search, Send, Sparkles, Star, X } from 'lucide-react';
 import QRCode from 'react-qr-code';
 import { airports, destinations, faqs, routes, secretDestinations, testimonials, type TravelScope } from './data';
@@ -20,6 +20,9 @@ function Hero({ openDialog }: { openDialog: OpenDialog }) {
   const [query, setQuery] = useState('');
   const [showResults, setShowResults] = useState(false);
   const [voiceMessage, setVoiceMessage] = useState('');
+  const [sparkles, setSparkles] = useState<{ id: number; x: number; y: number }[]>([]);
+  const sparkleId = useRef(0);
+  const lastSparkle = useRef(0);
   const allDestinations = [...destinations.Domestic, ...destinations.International, ...secretDestinations];
   const matches = allDestinations.filter(place => place.name.toLowerCase().includes(query.trim().toLowerCase()));
   function submitSearch(event: FormEvent) { event.preventDefault(); setShowResults(true); setVoiceMessage(''); }
@@ -27,25 +30,32 @@ function Hero({ openDialog }: { openDialog: OpenDialog }) {
     const bounds = event.currentTarget.getBoundingClientRect();
     event.currentTarget.style.setProperty('--pointer-x', `${((event.clientX - bounds.left) / bounds.width) * 100}%`);
     event.currentTarget.style.setProperty('--pointer-y', `${((event.clientY - bounds.top) / bounds.height) * 100}%`);
+    if (event.pointerType !== 'mouse') return;
+    const now = performance.now();
+    if (now - lastSparkle.current < 55) return;
+    lastSparkle.current = now;
+    const id = sparkleId.current++;
+    setSparkles(current => [...current.slice(-8), { id, x: event.clientX, y: event.clientY }]);
+    window.setTimeout(() => setSparkles(current => current.filter(sparkle => sparkle.id !== id)), 720);
   }
   return <section className="hero" id="home" onPointerMove={moveSky}>
     <div className="hero-sky" aria-hidden="true" />
-    <span className="cloud-easter-egg" aria-hidden="true"><i /><i /><i /></span>
+    <div className="cursor-sparkles" aria-hidden="true">{sparkles.map(sparkle => <span key={sparkle.id} className="cursor-sparkle" style={{ left: sparkle.x, top: sparkle.y }} />)}</div>
     <Header openDialog={openDialog} />
     <div className="hero-content relative text-center">
       <p className="hero-tagline">Your next destination is just a click away.</p>
       <h1>Fly Beyond Limits – Explore<br className="desktop-break" /> the World with Us</h1>
-      <p className="hero-description">Discover the freedom of seamless travel with our smart<br className="desktop-break" /> booking platform designed</p>
+      <p className="hero-description">Discover the freedom of seamless travel with our smart<br className="desktop-break" /> booking platform designed for curious travelers.</p>
       <div className="search-container">
         <form className="search-form flex items-center" role="search" onSubmit={submitSearch}>
           <button type="submit" className="icon-button search-submit" aria-label="Search destinations"><Search size={20} strokeWidth={1.5} /></button>
           <label className="sr-only" htmlFor="destination-search">Where do you want to fly?</label>
-          <input id="destination-search" value={query} onChange={event => { setQuery(event.target.value); setShowResults(true); }} onKeyDown={event => { if (event.key === 'Escape') setShowResults(false); }} placeholder="Search here Where do you want to fly?" autoComplete="off" aria-expanded={showResults} aria-controls="search-results" />
+          <input id="destination-search" value={query} onChange={event => { setQuery(event.target.value); setShowResults(true); }} onKeyDown={event => { if (event.key === 'Escape') setShowResults(false); }} placeholder="Where do you want to fly?" autoComplete="off" aria-expanded={showResults} aria-controls="search-results" />
           <button type="button" className="icon-button" aria-label="Voice search information" onClick={() => { setVoiceMessage('To search by voice, use your keyboard’s dictation feature, then select a destination.'); setShowResults(false); }}><Mic size={20} strokeWidth={1.4} /></button>
           <button type="button" className="icon-button" aria-label="Choose travel dates" onClick={() => openDialog({ kind: 'flight', title: 'Plan your next flight', destination: query.trim() || 'Cox’s Bazar' })}><CalendarDays size={20} strokeWidth={1.4} /></button>
         </form>
         {voiceMessage && <div className="search-results text-left" role="status"><p>{voiceMessage}</p><button className="text-link mt-3" onClick={() => setVoiceMessage('')}>Dismiss</button></div>}
-        {showResults && <div className="search-results text-left" id="search-results"><div className="flex items-center justify-between mb-2"><strong>{query ? 'Matching destinations' : 'Where will you go next?'}</strong><button className="icon-button" onClick={() => setShowResults(false)} aria-label="Close search results"><X size={18} /></button></div>{matches.length ? matches.map(place => <button key={place.name} className={`search-result ${place.name === 'Space' ? 'secret-result' : ''}`} onClick={() => { setShowResults(false); openDialog({ kind: 'flight', title: place.name === 'Space' ? 'To the stars' : `Let’s go to ${place.name}`, destination: place.name, description: place.description }); }}><span>{place.name}</span><ArrowRight size={17} /></button>) : <p className="py-4">No destinations found for “{query}”. Try Dhaka, Toronto, or Maldives.</p>}</div>}
+        {showResults && <div className="search-results text-left" id="search-results"><div className="flex items-center justify-between mb-2"><strong>{query ? 'Matching destinations' : 'Where will you go next?'}</strong><button className="icon-button" onClick={() => setShowResults(false)} aria-label="Close search results"><X size={18} /></button></div>{matches.length ? matches.map(place => <button key={place.name} className={`search-result ${place.name === 'Space' ? 'secret-result' : ''}`} onClick={() => { setShowResults(false); openDialog({ kind: 'flight', title: place.name === 'Space' ? 'To infinity and beyond ~ 🧑‍🚀' : `Let’s go to ${place.name}`, destination: place.name, description: place.description }); }}><span>{place.name}</span><ArrowRight size={17} /></button>) : <p className="py-4">No destinations found for “{query}”. Try Dhaka, Toronto, or Maldives.</p>}</div>}
       </div>
     </div>
     <img className="hero-airplane" src="/images/airplane.png" alt="A white passenger airplane taking flight" fetchPriority="high" width="613" height="290" />
@@ -55,7 +65,7 @@ function Hero({ openDialog }: { openDialog: OpenDialog }) {
 function PopularDestinations({ openDialog }: { openDialog: OpenDialog }) {
   const [scope, setScope] = useState<TravelScope>('Domestic');
   return <section id="destinations" className="destinations-section page-width reveal">
-    <SectionHeading title="Popular Destinations">Experience the romance of the Eiffel Tower, historic streets, and<br className="desktop-break" /> exquisite cuisine Escape to tropical bliss with pristine</SectionHeading>
+    <SectionHeading title="Popular Destinations">Wander historic streets, taste unforgettable cuisine, and<br className="desktop-break" /> escape to tropical beaches made for slowing down.</SectionHeading>
     <ScopeTabs value={scope} onChange={setScope} label="Destination region" />
     <div className="destination-grid grid grid-cols-2 md:grid-cols-4 gap-6">{destinations[scope].map(destination => <button key={destination.name} className="destination-card group" onClick={() => openDialog({ kind: 'flight', title: `Explore ${destination.name}`, destination: destination.name, description: destination.description })}>
       <img src={`/images/${destination.image}`} alt="" loading="lazy" width="600" height="750" />
@@ -103,7 +113,7 @@ function Footer({ openDialog }: { openDialog: OpenDialog }) {
   const [subscribed, setSubscribed] = useState(false);
   function openInfo(title: string) { openDialog({ kind: 'info', title, description: `${title} is part of the Acme Air frontend preview. This demo does not process bookings, collect personal data, or provide live travel services.` }); }
   const download = () => openDialog({ kind: 'download', title: 'Adventure, in your pocket', description: 'The Acme Air app is part of this website concept. App Store and Google Play releases are not yet available. For now, explore all our destinations right here.' });
-  return <footer className="site-footer"><div className="footer-clouds" aria-hidden="true" /><section id="download" className="app-section relative text-center"><span className="lantern-easter-egg" aria-hidden="true"><i /><i /><i /></span><p className="app-tagline"><Sparkles size={13} color="#bd871d" />Always connected wherever you go</p><h2>Your All in one Travel App</h2><p>Discover the freedom of seamless travel with our smart booking<br className="desktop-break" /> platform designed Popular Destinations</p><div className="app-downloads flex items-center justify-center gap-8"><StoreBadge store="apple" onClick={download} /><a className="app-qr" href="#destinations" aria-label="Explore destinations"><QRCode value={`${window.location.origin}/#destinations`} size={65} /></a><StoreBadge store="google" onClick={download} /></div></section>
+  return <footer className="site-footer"><div className="footer-clouds" aria-hidden="true" /><section id="download" className="app-section relative text-center"><p className="app-tagline"><Sparkles size={13} color="#bd871d" />Always connected wherever you go</p><h2>Your All in one Travel App</h2><p>Discover the freedom of seamless travel with our smart booking<br className="desktop-break" /> platform designed for wherever you go next.</p><div className="app-downloads flex items-center justify-center gap-8"><StoreBadge store="apple" onClick={download} /><a className="app-qr" href="#destinations" aria-label="Explore destinations"><QRCode value={`${window.location.origin}/#destinations`} size={65} /></a><StoreBadge store="google" onClick={download} /></div></section>
     <div className="footer-main page-width relative grid"><div className="footer-brand"><a href="#home" className="brand">Acme Air</a><p>Discover the freedom of seamless travel with<br className="desktop-break" /> our smart booking platform designed Popular<br className="desktop-break" /> Destinations</p><form className="newsletter flex" onSubmit={event => { event.preventDefault(); setSubscribed(true); }}><label htmlFor="newsletter-email" className="sr-only">Your email address</label><input id="newsletter-email" type="email" placeholder="Enter your email address" required aria-describedby={subscribed ? 'newsletter-status' : undefined} /><button className="button" aria-label="Subscribe to travel updates"><ArrowRight size={23} strokeWidth={1.5} /></button></form>{subscribed && <p id="newsletter-status" className="newsletter-status" role="status">Thanks! You’re on the demo list. No email was stored.</p>}<p className="follow-label">Follow us on</p><div className="social-links flex items-center gap-3">{[{ name: 'Facebook', Icon: Facebook }, { name: 'Instagram', Icon: Instagram }, { name: 'LinkedIn', Icon: Linkedin }, { name: 'Telegram', Icon: Send }].map(({ name, Icon }) => <button key={name} aria-label={name} onClick={() => openInfo(`Acme Air on ${name}`)}><Icon size={22} strokeWidth={2} /></button>)}</div></div>
       <nav className="footer-nav" aria-label="Footer navigation"><h3>Navigation</h3>{[['Home', '#home'], ['Plans', '#flights'], ['Destinations', '#destinations'], ['About us', '#about'], ['Blog', '#about'], ['Download', '#download']].map(([label, href]) => <a key={label} href={href}>{label}</a>)}</nav>
       <nav className="footer-nav" aria-label="Top destinations"><h3>Top Destinations</h3>{['Singapore', 'Qatar', 'Malaysia', 'Italy', 'United States'].map(place => <button key={place} onClick={() => openDialog({ kind: 'flight', title: `Explore ${place}`, destination: place })}>{place}</button>)}</nav>

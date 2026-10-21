@@ -5,7 +5,7 @@ test('destination search, tabs, trip form, and FAQs work', async ({ page }) => {
   await expect(page.getByLabel('Where do you want to fly?')).toBeVisible();
   await page.getByLabel('Where do you want to fly?').fill('Space');
   await page.getByRole('button', { name: 'Space', exact: true }).click();
-  await expect(page.getByRole('heading', { name: 'To the stars' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'To infinity and beyond ~ 🧑‍🚀' })).toBeVisible();
   await expect(page.getByRole('dialog').getByLabel('From')).toHaveValue('SIN');
   await page.getByRole('dialog').getByLabel('From').selectOption('DAC');
   await expect(page.getByRole('dialog').getByLabel('From')).toHaveValue('DAC');
