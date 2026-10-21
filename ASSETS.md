@@ -14,6 +14,7 @@ All shipping images are stored locally under `public/images`. Photography is use
 | istanbul.jpg | https://images.unsplash.com/photo-1524231757912-21f4fe3a7200 |
 | london.jpg | https://images.unsplash.com/photo-1518391846015-55a9cc003b25 |
 | maldives.jpg | https://images.unsplash.com/photo-1510414842594-a61c69b5ae57 |
+| buzz-lightyear.webp | User-provided Buzz Lightyear image copied from `/Users/tmgrace/Downloads/buzz-lightyear.webp`; used only in the opt-in Space easter egg. |
 | sarah.jpg | https://images.unsplash.com/photo-1438761681033-6461ffad8d80 |
 | maria.jpg | https://images.unsplash.com/photo-1494790108377-be9c29b29330 |
 | eleanor.jpg | https://images.unsplash.com/photo-1534528741775-53994a69daeb |

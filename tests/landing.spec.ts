@@ -13,7 +13,10 @@ test('destination search, tabs, trip form, and FAQs work', async ({ page }) => {
   await expect(page.getByRole('dialog').getByLabel('From')).toHaveValue('DAC');
   await page.getByLabel('Departure').fill('2027-05-20');
   await page.getByRole('button', { name: 'Explore this trip' }).click();
-  await expect(page.getByRole('heading', { name: 'To infinity and beyond ~ 🧑‍🚀' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'To infinity and beyond ~' })).toBeVisible();
+  await expect(page.locator('.buzz-lightyear')).toBeVisible();
+  await page.mouse.move(700, 500);
+  await expect(page.locator('.space-cursor-sparkles .cursor-sparkle')).toBeVisible();
   await expect(page.locator('.hero')).toHaveClass(/space-mode/);
   await page.keyboard.press('Escape');
   await expect(page.locator('.hero')).not.toHaveClass(/space-mode/);
