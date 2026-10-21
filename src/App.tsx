@@ -30,7 +30,6 @@ function Hero({ openDialog }: { openDialog: OpenDialog }) {
   }
   return <section className="hero" id="home" onPointerMove={moveSky}>
     <div className="hero-sky" aria-hidden="true" />
-    <div className="hero-orbit" aria-hidden="true"><span /></div>
     <Header openDialog={openDialog} />
     <div className="hero-content relative text-center">
       <p className="hero-tagline">Your next destination is just a click away.</p>
