@@ -1,4 +1,13 @@
 export type TravelScope = 'Domestic' | 'International';
+export type Airport = { city: string; code: string; name: string; country: string };
+
+export const airports: Airport[] = [
+  { city: 'Singapore', code: 'SIN', name: 'Changi Airport', country: 'Singapore' },
+  { city: 'Dhaka', code: 'DAC', name: 'Hazrat Shahjalal International', country: 'Bangladesh' },
+  { city: 'Kuala Lumpur', code: 'KUL', name: 'Kuala Lumpur International', country: 'Malaysia' },
+  { city: 'Dubai', code: 'DXB', name: 'Dubai International', country: 'United Arab Emirates' },
+  { city: 'London', code: 'LHR', name: 'Heathrow Airport', country: 'United Kingdom' },
+];
 
 export const destinations = {
   Domestic: [
@@ -8,12 +17,17 @@ export const destinations = {
     { name: 'Cox’s Bazar', image: 'beach.jpg', description: 'Slow down on a beautiful stretch of coastline.' },
   ],
   International: [
-    { name: 'Istanbul', image: 'gopalpur.jpg', description: 'Historic wonders on the shores of the Bosphorus.' },
-    { name: 'Toronto', image: 'dhaka.jpg', description: 'A world of cultures and an unforgettable skyline.' },
-    { name: 'New York', image: 'chattagram.jpg', description: 'Find your next story in the city that never sleeps.' },
-    { name: 'Maldives', image: 'beach.jpg', description: 'Your own little piece of island paradise.' },
+    { name: 'Singapore', image: 'singapore.jpg', description: 'A futuristic garden city where every journey feels effortless.' },
+    { name: 'Istanbul', image: 'istanbul.jpg', description: 'Historic wonders on the shores of the Bosphorus.' },
+    { name: 'New York', image: 'london.jpg', description: 'Find your next story in the city that never sleeps.' },
+    { name: 'Maldives', image: 'maldives.jpg', description: 'Your own little piece of island paradise.' },
   ],
 } satisfies Record<TravelScope, { name: string; image: string; description: string }[]>;
+
+export const secretDestinations = [
+  { name: 'Space', image: 'clouds.jpg', description: 'A tiny detour beyond the usual flight path.' },
+  { name: 'Toronto', image: 'london.jpg', description: 'A world of cultures and an unforgettable skyline.' },
+];
 
 export const routes = {
   Domestic: ['Cox’s Bazar', 'Chattagram', 'Silhet', 'Rajshahi', 'Khagrasori', 'Tangail'],

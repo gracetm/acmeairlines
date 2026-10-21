@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { ArrowRight, CheckCircle2, X } from 'lucide-react';
-import type { TravelScope } from '../data';
+import { airports, type TravelScope } from '../data';
 
 export function SectionHeading({ title, children }: { title: string; children: ReactNode }) {
   return <div className="section-heading text-center"><h2>{title}</h2><p>{children}</p></div>;
@@ -17,23 +17,26 @@ export type DialogContent = { kind: 'signin' | 'register' | 'partner' | 'support
 export function ActionDialog({ content, onClose }: { content: DialogContent | null; onClose: () => void }) {
   const ref = useRef<HTMLDialogElement>(null);
   const [submitted, setSubmitted] = useState(false);
+  const [departureCode, setDepartureCode] = useState(airports[0].code);
   useEffect(() => {
     setSubmitted(false);
+    setDepartureCode(airports[0].code);
     if (content) ref.current?.showModal();
     else ref.current?.close();
   }, [content]);
   const isAuth = content?.kind === 'signin' || content?.kind === 'register';
   const isFlight = content?.kind === 'flight';
+  const departure = airports.find(airport => airport.code === departureCode) ?? airports[0];
   const isForm = content && !['info', 'download'].includes(content.kind);
   return <dialog ref={ref} className="action-dialog" onCancel={onClose} onClick={event => { if (event.target === event.currentTarget) onClose(); }} aria-labelledby="dialog-title">
     {content && <div className="dialog-inner">
       <button type="button" className="icon-button dialog-close" onClick={onClose} aria-label="Close dialog"><X size={21} /></button>
       <span className="brand">Acme Air</span>
       <h2 id="dialog-title">{content.title}</h2>
-      <p className="dialog-description">{content.description ?? (isFlight ? `Plan your journey from Dhaka to ${content.destination}.` : 'A little closer to your next adventure.')}</p>
+      <p className="dialog-description">{content.description ?? (isFlight ? `Plan your journey from ${departure.city} to ${content.destination}.` : 'A little closer to your next adventure.')}</p>
       {submitted ? <div className="success-message" role="status"><CheckCircle2 size={30} /><h3>{isFlight ? 'Your trip is ready to explore' : 'You’re all set!'}</h3><p>{isFlight ? 'Your route and dates have been selected. Live fares and booking will be available when a flight provider is connected.' : 'Thanks for trying Acme Air. This demo has not sent or saved your information.'}</p><button className="button mt-5" onClick={onClose}>Keep exploring</button></div> : isForm ? <form className="dialog-form" onSubmit={event => { event.preventDefault(); setSubmitted(true); }}>
         {isFlight ? <>
-          <div className="grid grid-cols-2 gap-4"><label>From<input value="Dhaka (DAC)" readOnly /></label><label>To<input value={content.destination} readOnly /></label></div>
+          <div className="grid grid-cols-2 gap-4"><label>From<select value={departureCode} onChange={event => setDepartureCode(event.target.value)}>{airports.map(airport => <option key={airport.code} value={airport.code}>{airport.city} ({airport.code})</option>)}</select></label><label>To<input value={content.destination} readOnly /></label></div>
           <div className="grid grid-cols-2 gap-4"><label>Departure<input type="date" min={new Date().toLocaleDateString('en-CA')} required /></label><label>Travelers<select defaultValue="1"><option value="1">1 traveler</option><option value="2">2 travelers</option><option value="3">3 travelers</option><option value="4">4 travelers</option></select></label></div>
         </> : <>
           {content.kind !== 'signin' && <label>{content.kind === 'partner' ? 'Business name' : 'Your name'}<input name="name" autoComplete="name" placeholder={content.kind === 'partner' ? 'Your company' : 'Your full name'} required /></label>}

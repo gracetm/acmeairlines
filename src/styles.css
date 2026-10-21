@@ -33,6 +33,10 @@ h2 { font-size: 36px; line-height: 1.3; font-weight: 800; letter-spacing: -.025e
 .skip-link:focus { top: 15px; }
 .hero { --pointer-x: 50%; --pointer-y: 35%; position: relative; height: 960px; overflow: clip; isolation: isolate; padding-top: 26px; background: linear-gradient(to bottom, #dceef0 0%, #a2d2da 62%, #abd5dc 77%, #fff 98%); }
 .hero-sky { position: absolute; z-index: -1; inset: 0 0 auto; height: 650px; background-image: url('/images/clouds.jpg'); background-size: cover; background-position: var(--pointer-x) 42%; filter: grayscale(1) contrast(.6) brightness(1.4); mix-blend-mode: luminosity; opacity: .6; mask-image: linear-gradient(#000 0%, #000 72%, transparent 100%); transition: background-position 700ms cubic-bezier(.16,1,.3,1); animation: cloud-drift 22s ease-in-out infinite alternate; }
+.cloud-easter-egg { position: absolute; top: 315px; left: 13%; z-index: 1; display: flex; align-items: center; gap: 5px; opacity: .2; transform: rotate(-12deg); pointer-events: none; }
+.cloud-easter-egg i { display: block; width: 7px; height: 7px; border-radius: 50%; background: #fff; box-shadow: 0 0 10px rgb(255 255 255 / 70%); }
+.cloud-easter-egg i:first-child { width: 13px; height: 13px; transform: translateY(7px); }
+.cloud-easter-egg i:last-child { transform: translateY(7px); }
 .site-header { position: relative; z-index: 20; min-height: 80px; padding: 16px 35px 16px 46px; border-radius: 30px; background: #fff; }
 .main-nav { display: flex; align-items: center; gap: 29px; }
 .main-nav a, .signin-link { font-size: 14px; color: #707070; }
@@ -52,6 +56,7 @@ h2 { font-size: 36px; line-height: 1.3; font-weight: 800; letter-spacing: -.025e
 .search-results { position: absolute; top: calc(100% + 12px); left: 0; right: 0; z-index: 30; max-height: 330px; overflow: auto; border-radius: 16px; background: #fff; box-shadow: 0 12px 35px #23485124; padding: 18px 24px; font-size: 14px; animation: result-arrive 220ms cubic-bezier(.16,1,.3,1) both; }
 .search-result { display: flex; justify-content: space-between; width: 100%; padding: 12px 8px; border-bottom: 1px solid #edf2f4; text-align: left; }
 .search-result:hover { background: #f0f7fb; }
+.secret-result { color: #5b7180; font-style: italic; }
 .hero-airplane { position: absolute; z-index: 2; width: 960px; height: 350px; object-fit: fill; left: 50%; top: 655px; transform: translateX(-50%) rotate(4deg); filter: drop-shadow(0 18px 12px #3d657313); animation: take-flight 1.3s cubic-bezier(.16,1,.3,1) both, plane-cruise 7s 1.3s ease-in-out infinite; }
 @keyframes take-flight { from { transform: translateX(-53%) translateY(20px) rotate(3deg); } to { transform: translateX(-50%) rotate(4deg); } }
 .section-heading p { margin-top: 12px; color: #505050; font-size: 18px; line-height: 1.6; }
@@ -73,6 +78,8 @@ h2 { font-size: 36px; line-height: 1.3; font-weight: 800; letter-spacing: -.025e
 .destination-card:hover > span, .destination-card:focus-visible > span { transform: translateX(4px); }
 .flights-section { padding-top: 92px; }
 .flight-grid { margin-top: 55px; }
+.departure-picker { width: fit-content; margin: 32px auto 0; color: #596267; font-size: 14px; }
+.departure-picker select { max-width: 330px; padding: 11px 35px 11px 14px; border: 1px solid #d8e4e8; border-radius: 7px; background: #f5fafc; color: #283c43; font-size: 13px; }
 .flight-route { min-height: 86px; padding: 17px 31px; background: #f0f7fb; border: 1px solid #e4edf1; border-radius: 10px; color: #45494b; }
 .flight-route { transition: transform 260ms cubic-bezier(.16,1,.3,1), background-color 180ms, border-color 180ms, box-shadow 260ms; }
 .flight-route:hover { border-color: #8cbdc8; background: #e6f2f6; transform: translateY(-3px); box-shadow: 0 10px 22px rgb(33 83 96 / 10%); }
@@ -112,6 +119,10 @@ h2 { font-size: 36px; line-height: 1.3; font-weight: 800; letter-spacing: -.025e
 .footer-clouds { position: absolute; z-index: -1; inset: 0 0 auto; height: 570px; background: #a4d6df; mask-image: linear-gradient(transparent, #000 15%, #000 75%, transparent); }
 .footer-clouds::after { content: ''; position: absolute; inset: 0; background: url('/images/clouds.jpg') center 46% / cover; filter: grayscale(1) contrast(.6) brightness(1.4); mix-blend-mode: luminosity; opacity: .55; }
 .app-section { padding-top: 3px; }
+.lantern-easter-egg { position: absolute; top: -2px; left: 50%; display: flex; gap: 20px; transform: translateX(-50%); opacity: .45; }
+.lantern-easter-egg i { display: block; width: 5px; height: 5px; border-radius: 50%; background: #f2c95d; box-shadow: 0 0 12px 3px rgb(242 201 93 / 45%); animation: lantern-flicker 3.5s ease-in-out infinite; }
+.lantern-easter-egg i:nth-child(2) { animation-delay: -1.2s; }
+.lantern-easter-egg i:nth-child(3) { animation-delay: -2.4s; }
 .app-tagline { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 5px 15px; border-radius: 20px; background: #fff; font-size: 13px; font-weight: 600; }
 .app-section h2 { margin-top: 13px; }
 .app-section > p:not(.app-tagline) { margin-top: 14px; font-size: 17px; line-height: 1.45; color: #4c5356; }
@@ -158,6 +169,7 @@ h2 { font-size: 36px; line-height: 1.3; font-weight: 800; letter-spacing: -.025e
 @keyframes cloud-drift { from { transform: translate3d(-1.5%, 0, 0) scale(1.02); } to { transform: translate3d(1.5%, -1%, 0) scale(1.05); } }
 @keyframes plane-cruise { 0%, 100% { transform: translateX(-50%) translateY(0) rotate(4deg); } 50% { transform: translateX(-50%) translateY(-7px) rotate(4deg); } }
 @keyframes result-arrive { from { opacity: 0; transform: translateY(-6px) scale(.985); } to { opacity: 1; transform: translateY(0) scale(1); } }
+@keyframes lantern-flicker { 0%, 100% { opacity: .5; transform: translateY(0); } 50% { opacity: 1; transform: translateY(-3px); } }
 @keyframes route-pulse { from { transform: rotate(45deg) scale(1); } to { transform: rotate(45deg) scale(1.13); } }
 
 @media (min-width: 1600px) { .hero { height: 1000px; } .hero-airplane { top: 635px; } }
@@ -243,6 +255,8 @@ h2 { font-size: 36px; line-height: 1.3; font-weight: 800; letter-spacing: -.025e
   .destination-card > span { font-size: 14px; bottom: 14px; left: 12px; }
   .flights-section { padding-top: 72px; }
   .flight-grid { margin-top: 32px; gap: 12px; }
+  .departure-picker { align-items: flex-start; flex-direction: column; width: 100%; margin-top: 25px; }
+  .departure-picker select { width: 100%; max-width: none; }
   .flight-route { min-height: 78px; padding: 16px 21px; }
   .flight-route strong, .flight-route > span > span { font-size: 13px; }
   .faq-section { width: calc(100% - 40px); padding-top: 80px; }

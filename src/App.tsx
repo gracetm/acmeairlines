@@ -1,7 +1,7 @@
 import { useEffect, useState, type FormEvent, type PointerEvent } from 'react';
 import { ArrowRight, CalendarDays, Facebook, Instagram, Linkedin, Menu, Mic, Plane, Plus, Search, Send, Sparkles, Star, X } from 'lucide-react';
 import QRCode from 'react-qr-code';
-import { destinations, faqs, routes, testimonials, type TravelScope } from './data';
+import { airports, destinations, faqs, routes, secretDestinations, testimonials, type TravelScope } from './data';
 import { ActionDialog, ScopeTabs, SectionHeading, type DialogContent } from './components/ui';
 
 type OpenDialog = (content: DialogContent) => void;
@@ -20,7 +20,7 @@ function Hero({ openDialog }: { openDialog: OpenDialog }) {
   const [query, setQuery] = useState('');
   const [showResults, setShowResults] = useState(false);
   const [voiceMessage, setVoiceMessage] = useState('');
-  const allDestinations = [...destinations.Domestic, ...destinations.International];
+  const allDestinations = [...destinations.Domestic, ...destinations.International, ...secretDestinations];
   const matches = allDestinations.filter(place => place.name.toLowerCase().includes(query.trim().toLowerCase()));
   function submitSearch(event: FormEvent) { event.preventDefault(); setShowResults(true); setVoiceMessage(''); }
   function moveSky(event: PointerEvent<HTMLElement>) {
@@ -30,6 +30,7 @@ function Hero({ openDialog }: { openDialog: OpenDialog }) {
   }
   return <section className="hero" id="home" onPointerMove={moveSky}>
     <div className="hero-sky" aria-hidden="true" />
+    <span className="cloud-easter-egg" aria-hidden="true"><i /><i /><i /></span>
     <Header openDialog={openDialog} />
     <div className="hero-content relative text-center">
       <p className="hero-tagline">Your next destination is just a click away.</p>
@@ -44,7 +45,7 @@ function Hero({ openDialog }: { openDialog: OpenDialog }) {
           <button type="button" className="icon-button" aria-label="Choose travel dates" onClick={() => openDialog({ kind: 'flight', title: 'Plan your next flight', destination: query.trim() || 'Cox’s Bazar' })}><CalendarDays size={20} strokeWidth={1.4} /></button>
         </form>
         {voiceMessage && <div className="search-results text-left" role="status"><p>{voiceMessage}</p><button className="text-link mt-3" onClick={() => setVoiceMessage('')}>Dismiss</button></div>}
-        {showResults && <div className="search-results text-left" id="search-results"><div className="flex items-center justify-between mb-2"><strong>{query ? 'Matching destinations' : 'Where will you go next?'}</strong><button className="icon-button" onClick={() => setShowResults(false)} aria-label="Close search results"><X size={18} /></button></div>{matches.length ? matches.map(place => <button key={place.name} className="search-result" onClick={() => { setShowResults(false); openDialog({ kind: 'flight', title: `Let’s go to ${place.name}`, destination: place.name }); }}><span>{place.name}</span><ArrowRight size={17} /></button>) : <p className="py-4">No destinations found for “{query}”. Try Dhaka, Toronto, or Maldives.</p>}</div>}
+        {showResults && <div className="search-results text-left" id="search-results"><div className="flex items-center justify-between mb-2"><strong>{query ? 'Matching destinations' : 'Where will you go next?'}</strong><button className="icon-button" onClick={() => setShowResults(false)} aria-label="Close search results"><X size={18} /></button></div>{matches.length ? matches.map(place => <button key={place.name} className={`search-result ${place.name === 'Space' ? 'secret-result' : ''}`} onClick={() => { setShowResults(false); openDialog({ kind: 'flight', title: place.name === 'Space' ? 'To the stars' : `Let’s go to ${place.name}`, destination: place.name, description: place.description }); }}><span>{place.name}</span><ArrowRight size={17} /></button>) : <p className="py-4">No destinations found for “{query}”. Try Dhaka, Toronto, or Maldives.</p>}</div>}
       </div>
     </div>
     <img className="hero-airplane" src="/images/airplane.png" alt="A white passenger airplane taking flight" fetchPriority="high" width="613" height="290" />
@@ -65,11 +66,13 @@ function PopularDestinations({ openDialog }: { openDialog: OpenDialog }) {
 
 function FlightRoutes({ openDialog }: { openDialog: OpenDialog }) {
   const [scope, setScope] = useState<TravelScope>('Domestic');
+  const [departure, setDeparture] = useState(airports[0]);
   return <section id="flights" className="flights-section page-width reveal">
     <SectionHeading title="Search Cheapest Flight By Destinations">Looking to fly on a budget? Easily compare and search the<br className="desktop-break" /> cheapest flights by destination with our smar</SectionHeading>
     <ScopeTabs value={scope} onChange={setScope} label="Flight region" />
-    <div className="flight-grid grid md:grid-cols-2 gap-6">{routes[scope].map(destination => <button key={destination} className="flight-route flex items-center justify-between" onClick={() => openDialog({ kind: 'flight', title: `Dhaka to ${destination}`, destination })}>
-      <span className="text-left"><strong>Dhaka</strong><span>Hazrat Shahjalal I.</span></span><span className="route-plane" aria-hidden="true"><Plane size={16} strokeWidth={1.2} /></span><span className="text-right"><strong>{destination}</strong><span>{scope === 'Domestic' ? 'Cox’s Bazar Airport' : 'International Airport'}</span></span>
+    <label className="departure-picker flex items-center gap-3">Departing from<select value={departure.code} onChange={event => setDeparture(airports.find(airport => airport.code === event.target.value) ?? airports[0])}>{airports.map(airport => <option key={airport.code} value={airport.code}>{airport.city} ({airport.code}) · {airport.name}</option>)}</select></label>
+    <div className="flight-grid grid md:grid-cols-2 gap-6">{routes[scope].map(destination => <button key={destination} className="flight-route flex items-center justify-between" onClick={() => openDialog({ kind: 'flight', title: `${departure.city} to ${destination}`, destination })}>
+      <span className="text-left"><strong>{departure.city}</strong><span>{departure.code} · {departure.name}</span></span><span className="route-plane" aria-hidden="true"><Plane size={16} strokeWidth={1.2} /></span><span className="text-right"><strong>{destination}</strong><span>{scope === 'Domestic' ? 'Cox’s Bazar Airport' : 'International Airport'}</span></span>
     </button>)}</div>
   </section>;
 }
@@ -100,7 +103,7 @@ function Footer({ openDialog }: { openDialog: OpenDialog }) {
   const [subscribed, setSubscribed] = useState(false);
   function openInfo(title: string) { openDialog({ kind: 'info', title, description: `${title} is part of the Acme Air frontend preview. This demo does not process bookings, collect personal data, or provide live travel services.` }); }
   const download = () => openDialog({ kind: 'download', title: 'Adventure, in your pocket', description: 'The Acme Air app is part of this website concept. App Store and Google Play releases are not yet available. For now, explore all our destinations right here.' });
-  return <footer className="site-footer"><div className="footer-clouds" aria-hidden="true" /><section id="download" className="app-section relative text-center"><p className="app-tagline"><Sparkles size={13} color="#bd871d" />Always connected wherever you go</p><h2>Your All in one Travel App</h2><p>Discover the freedom of seamless travel with our smart booking<br className="desktop-break" /> platform designed Popular Destinations</p><div className="app-downloads flex items-center justify-center gap-8"><StoreBadge store="apple" onClick={download} /><a className="app-qr" href="#destinations" aria-label="Explore destinations"><QRCode value={`${window.location.origin}/#destinations`} size={65} /></a><StoreBadge store="google" onClick={download} /></div></section>
+  return <footer className="site-footer"><div className="footer-clouds" aria-hidden="true" /><section id="download" className="app-section relative text-center"><span className="lantern-easter-egg" aria-hidden="true"><i /><i /><i /></span><p className="app-tagline"><Sparkles size={13} color="#bd871d" />Always connected wherever you go</p><h2>Your All in one Travel App</h2><p>Discover the freedom of seamless travel with our smart booking<br className="desktop-break" /> platform designed Popular Destinations</p><div className="app-downloads flex items-center justify-center gap-8"><StoreBadge store="apple" onClick={download} /><a className="app-qr" href="#destinations" aria-label="Explore destinations"><QRCode value={`${window.location.origin}/#destinations`} size={65} /></a><StoreBadge store="google" onClick={download} /></div></section>
     <div className="footer-main page-width relative grid"><div className="footer-brand"><a href="#home" className="brand">Acme Air</a><p>Discover the freedom of seamless travel with<br className="desktop-break" /> our smart booking platform designed Popular<br className="desktop-break" /> Destinations</p><form className="newsletter flex" onSubmit={event => { event.preventDefault(); setSubscribed(true); }}><label htmlFor="newsletter-email" className="sr-only">Your email address</label><input id="newsletter-email" type="email" placeholder="Enter your email address" required aria-describedby={subscribed ? 'newsletter-status' : undefined} /><button className="button" aria-label="Subscribe to travel updates"><ArrowRight size={23} strokeWidth={1.5} /></button></form>{subscribed && <p id="newsletter-status" className="newsletter-status" role="status">Thanks! You’re on the demo list. No email was stored.</p>}<p className="follow-label">Follow us on</p><div className="social-links flex items-center gap-3">{[{ name: 'Facebook', Icon: Facebook }, { name: 'Instagram', Icon: Instagram }, { name: 'LinkedIn', Icon: Linkedin }, { name: 'Telegram', Icon: Send }].map(({ name, Icon }) => <button key={name} aria-label={name} onClick={() => openInfo(`Acme Air on ${name}`)}><Icon size={22} strokeWidth={2} /></button>)}</div></div>
       <nav className="footer-nav" aria-label="Footer navigation"><h3>Navigation</h3>{[['Home', '#home'], ['Plans', '#flights'], ['Destinations', '#destinations'], ['About us', '#about'], ['Blog', '#about'], ['Download', '#download']].map(([label, href]) => <a key={label} href={href}>{label}</a>)}</nav>
       <nav className="footer-nav" aria-label="Top destinations"><h3>Top Destinations</h3>{['Singapore', 'Qatar', 'Malaysia', 'Italy', 'United States'].map(place => <button key={place} onClick={() => openDialog({ kind: 'flight', title: `Explore ${place}`, destination: place })}>{place}</button>)}</nav>
