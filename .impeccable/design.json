@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "generatedAt": "2026-10-21T00:00:00Z",
-  "title": "Design System: CloudPilot",
+  "title": "Design System: Acme Air",
   "extensions": {
     "colorMeta": {
       "ink": { "role": "neutral", "displayName": "Ink", "tonalRamp": ["oklch(15% 0 0)", "oklch(26% 0 0)", "oklch(38% 0 0)", "oklch(49% 0 0)", "oklch(61% 0 0)", "oklch(72% 0 0)", "oklch(84% 0 0)", "oklch(95% 0 0)"] },
@@ -124,13 +124,13 @@
       "kind": "custom",
       "refersTo": "accordion",
       "description": "Native expandable FAQ; keyboard interaction and open-state rotation work without a framework.",
-      "html": "<div class=\"ds-faq\"><details class=\"ds-question\"><summary><span>Q. What is CloudPilot Flight?</span><svg width=\"17\" height=\"17\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12h14M12 5v14\"/></svg></summary><p>CloudPilot brings destination inspiration and flight planning together in one simple place. This interactive preview lets you explore routes and plan your next adventure.</p></details></div>",
+      "html": "<div class=\"ds-faq\"><details class=\"ds-question\"><summary><span>Q. What is Acme Air Flight?</span><svg width=\"17\" height=\"17\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12h14M12 5v14\"/></svg></summary><p>Acme Air brings destination inspiration and flight planning together in one simple place. This interactive preview lets you explore routes and plan your next adventure.</p></details></div>",
       "css": ".ds-faq{border:1px solid #eceff1;border-radius:12px;overflow:hidden;color:var(--color-ink,#0a0a0a);font-family:var(--font-sans,'Manrope',sans-serif)}.ds-question+.ds-question{border-top:1px solid #e9ecef}.ds-question summary{display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:68px;padding:19px 23px;font-size:15px;font-weight:600;line-height:1.5;list-style:none;cursor:pointer}.ds-question summary::-webkit-details-marker{display:none}.ds-question summary:hover{background:#f8fbfc}.ds-question summary:focus-visible{outline:3px solid #367d8e;outline-offset:5px}.ds-question summary svg{flex-shrink:0;transition:transform 180ms}.ds-question[open] summary svg{transform:rotate(45deg)}.ds-question>p{margin:0;padding:0 50px 22px 23px;font-size:15px;line-height:1.75;color:#51585a}@media(max-width:767px){.ds-question summary{padding:18px 16px;font-size:12px;line-height:1.6}.ds-question>p{padding:0 20px 20px 16px;font-size:13px}}@media(prefers-reduced-motion:reduce){.ds-question summary svg{transition:none}}"
     }
   ],
   "narrative": {
     "northStar": "Muted cyan sky, white canvas",
-    "overview": "CloudPilot pairs photographic clouds and a large isolated passenger airplane with neutral sans-serif lettering, black controls, and gently rounded destination photography. This phrase describes the built OWN-WORLD contract; it introduces no new visual direction. The user-provided screenshot pins the palette, composition, CloudPilot name, and spacious character.\n\nThe React/TypeScript, Tailwind CSS 4 frontend uses custom CSS for its visual identity and utility classes for flex/grid composition. Local imagery closely matches the reference rather than reproducing its exact assets; provenance lives in ASSETS.md. This record follows the shipped source, with the supplied desktop/mobile captures as composition evidence. The reported finish verdict is ship at two-fix scope: cloud contrast and text contrast resolved.",
+      "overview": "Acme Air pairs photographic clouds and a large isolated passenger airplane with neutral sans-serif lettering, black controls, and gently rounded destination photography. This phrase describes the built OWN-WORLD contract; it introduces no new visual direction. The user-provided screenshot pins the palette, composition, Acme Air name, and spacious character.\n\nThe React/TypeScript, Tailwind CSS 4 frontend uses custom CSS for its visual identity and utility classes for flex/grid composition. Local imagery closely matches the reference rather than reproducing its exact assets; provenance lives in ASSETS.md. This record follows the shipped source, with the supplied desktop/mobile captures as composition evidence. The reported finish verdict is ship at two-fix scope: cloud contrast and text contrast resolved.",
     "keyCharacteristics": [
       "Muted cyan photographic atmosphere fading into white.",
       "Heavy Manrope headlines, quiet supporting text, and black actions.",

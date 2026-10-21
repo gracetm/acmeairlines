@@ -1,8 +1,8 @@
-# CloudPilot / Acme Airlines
+# Acme Air
 
 Acme Airlines demo website for Cloudflare application services.
 
-A complete, responsive recreation of the supplied travel landing-page reference, built with React 19, TypeScript, Tailwind CSS 4, and Vite.
+A complete, responsive recreation of the supplied Acme Air travel landing-page reference, built with React 19, TypeScript, Tailwind CSS 4, and Vite.
 
 ## Run locally
 

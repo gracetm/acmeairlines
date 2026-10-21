@@ -17,10 +17,10 @@ test('destination search, tabs, trip form, and FAQs work', async ({ page }) => {
   await expect(page.locator('.destination-card').first()).toHaveText('Istanbul');
   await page.getByRole('group', { name: 'Flight region' }).getByRole('button', { name: 'International' }).click();
   await expect(page.locator('.flight-route').first()).toContainText('Singapore');
-  await page.getByText('Q. What is CloudPilot Flight?').click();
-  await expect(page.getByText('CloudPilot brings destination inspiration')).toBeVisible();
-  await page.getByText('Q. What is CloudPilot Flight?').click();
-  await expect(page.getByText('CloudPilot brings destination inspiration')).not.toBeVisible();
+  await page.getByText('Q. What is Acme Air Flight?').click();
+  await expect(page.getByText('Acme Air brings destination inspiration')).toBeVisible();
+  await page.getByText('Q. What is Acme Air Flight?').click();
+  await expect(page.getByText('Acme Air brings destination inspiration')).not.toBeVisible();
 });
 
 test('account, support, partner, newsletter, and download demo states work', async ({ page }) => {

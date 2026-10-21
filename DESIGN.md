@@ -1,5 +1,5 @@
 ---
-name: CloudPilot
+name: Acme Air
 description: Screenshot-led travel imagery, muted cyan clouds, and clear black controls on a spacious white canvas.
 colors:
   ink: "#0a0a0a"
@@ -131,13 +131,13 @@ components:
     rounded: "{rounded.dialog}"
 ---
 
-# Design System: CloudPilot
+# Design System: Acme Air
 
 ## Overview
 
 **Creative North Star: "Muted cyan sky, white canvas"**
 
-CloudPilot pairs photographic clouds and a large isolated passenger airplane with neutral sans-serif lettering, black controls, and gently rounded destination photography. This phrase describes the built OWN-WORLD contract; it introduces no new visual direction. The user-provided screenshot pins the palette, composition, CloudPilot name, and spacious character.
+Acme Air pairs photographic clouds and a large isolated passenger airplane with neutral sans-serif lettering, black controls, and gently rounded destination photography. This phrase describes the built OWN-WORLD contract; it introduces no new visual direction. The user-provided screenshot pins the palette, composition, Acme Air name, and spacious character.
 
 The React/TypeScript, Tailwind CSS 4 frontend uses custom CSS for its visual identity and utility classes for flex/grid composition. Local imagery closely matches the reference rather than reproducing its exact assets; provenance lives in ASSETS.md. This record follows the shipped source, with the supplied desktop/mobile captures as composition evidence. The reported finish verdict is ship at two-fix scope: cloud contrast and text contrast resolved.
 

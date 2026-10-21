@@ -28,10 +28,10 @@ export function ActionDialog({ content, onClose }: { content: DialogContent | nu
   return <dialog ref={ref} className="action-dialog" onCancel={onClose} onClick={event => { if (event.target === event.currentTarget) onClose(); }} aria-labelledby="dialog-title">
     {content && <div className="dialog-inner">
       <button type="button" className="icon-button dialog-close" onClick={onClose} aria-label="Close dialog"><X size={21} /></button>
-      <span className="brand">CloudPilot</span>
+      <span className="brand">Acme Air</span>
       <h2 id="dialog-title">{content.title}</h2>
       <p className="dialog-description">{content.description ?? (isFlight ? `Plan your journey from Dhaka to ${content.destination}.` : 'A little closer to your next adventure.')}</p>
-      {submitted ? <div className="success-message" role="status"><CheckCircle2 size={30} /><h3>{isFlight ? 'Your trip is ready to explore' : 'You’re all set!'}</h3><p>{isFlight ? 'Your route and dates have been selected. Live fares and booking will be available when a flight provider is connected.' : 'Thanks for trying CloudPilot. This demo has not sent or saved your information.'}</p><button className="button mt-5" onClick={onClose}>Keep exploring</button></div> : isForm ? <form className="dialog-form" onSubmit={event => { event.preventDefault(); setSubmitted(true); }}>
+      {submitted ? <div className="success-message" role="status"><CheckCircle2 size={30} /><h3>{isFlight ? 'Your trip is ready to explore' : 'You’re all set!'}</h3><p>{isFlight ? 'Your route and dates have been selected. Live fares and booking will be available when a flight provider is connected.' : 'Thanks for trying Acme Air. This demo has not sent or saved your information.'}</p><button className="button mt-5" onClick={onClose}>Keep exploring</button></div> : isForm ? <form className="dialog-form" onSubmit={event => { event.preventDefault(); setSubmitted(true); }}>
         {isFlight ? <>
           <div className="grid grid-cols-2 gap-4"><label>From<input value="Dhaka (DAC)" readOnly /></label><label>To<input value={content.destination} readOnly /></label></div>
           <div className="grid grid-cols-2 gap-4"><label>Departure<input type="date" min={new Date().toLocaleDateString('en-CA')} required /></label><label>Travelers<select defaultValue="1"><option value="1">1 traveler</option><option value="2">2 travelers</option><option value="3">3 travelers</option><option value="4">4 travelers</option></select></label></div>
