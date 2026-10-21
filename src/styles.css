@@ -144,13 +144,18 @@ h2 { font-size: 36px; line-height: 1.3; font-weight: 800; letter-spacing: -.025e
 .footer-bottom button:hover { text-decoration: underline; text-underline-offset: 4px; }
 .action-dialog { position: fixed; inset: 0; width: min(520px, calc(100% - 32px)); max-height: calc(100dvh - 40px); padding: 0; margin: auto; overflow-y: auto; border: 1px solid #dae5e9; border-radius: 20px; background: white; color: #151515; box-shadow: 0 24px 100px #17363c38; }
 .action-dialog::backdrop { background: #17303870; backdrop-filter: blur(4px); }
-.space-celebration { position: fixed; inset: 0; z-index: 50; display: grid; place-items: center; overflow: hidden; pointer-events: none; background: radial-gradient(circle at center, rgb(40 32 80 / 22%), transparent 50%); }
-.buzz-flight { position: relative; z-index: 2; animation: buzz-flight 6s cubic-bezier(.16,1,.3,1) .12s both; }
-.buzz-lightyear { position: relative; display: block; width: min(700px, 78vw); max-height: 72vh; object-fit: contain; border-radius: 14px; box-shadow: 0 0 80px rgb(210 74 225 / 32%); animation: buzz-rotation 6s linear .12s both; }
+.space-success-message { position: relative; min-height: 170px; color: #151515; }
+.space-success-copy { position: relative; z-index: 5; padding-top: 16px; }
+.space-success-copy h2 { font-size: 30px; color: #151515; }
+.space-success-copy p { margin-top: 12px; color: #566268; font-size: 15px; line-height: 1.6; }
+.space-celebration { position: fixed; inset: 0; z-index: 1; display: grid; place-items: center; overflow: hidden; pointer-events: none; background: radial-gradient(circle at center, rgb(40 32 80 / 22%), transparent 50%); }
+.buzz-flight { position: relative; z-index: 2; animation: buzz-flight 6.2s cubic-bezier(.16,1,.3,1) .12s both; }
+.buzz-wiggle { animation: buzz-wiggle 1.6s ease-in-out 1.3s 2 both; }
+.buzz-lightyear { position: relative; display: block; width: min(700px, 78vw); max-height: 72vh; object-fit: contain; border-radius: 14px; box-shadow: 0 0 80px rgb(210 74 225 / 32%); animation: buzz-pinwheel 1.15s cubic-bezier(.16,1,.3,1) .12s both; }
 .space-fireworks, .space-cursor-sparkles { position: absolute; inset: 0; pointer-events: none; }
 .space-fireworks { z-index: 3; }
 .space-cursor-sparkles { z-index: 4; }
-.burst-particle { position: absolute; top: 50%; left: 50%; display: grid; place-items: center; width: 17px; height: 17px; color: #f6d27f; opacity: 0; animation: burst-particle 2.8s var(--burst-delay) cubic-bezier(.22,.61,.36,1) both; }
+.burst-particle { position: absolute; top: 50%; left: 50%; display: grid; place-items: center; width: 17px; height: 17px; color: #f6d27f; opacity: 0; animation: burst-particle 4.4s var(--burst-delay) cubic-bezier(.22,.61,.36,1) both; }
 .burst-star { clip-path: polygon(50% 0, 60% 38%, 100% 50%, 60% 62%, 50% 100%, 40% 62%, 0 50%, 40% 38%); background: currentColor; filter: drop-shadow(0 0 7px rgb(246 210 127 / 75%)); }
 .burst-rocket { color: #f3b9e6; filter: drop-shadow(0 0 7px rgb(243 185 230 / 80%)); }
 .dialog-inner { position: relative; padding: 35px; }
@@ -173,8 +178,9 @@ h2 { font-size: 36px; line-height: 1.3; font-weight: 800; letter-spacing: -.025e
 @keyframes result-arrive { from { opacity: 0; transform: translateY(-6px) scale(.985); } to { opacity: 1; transform: translateY(0) scale(1); } }
 @keyframes sparkle-trail { 0% { opacity: .8; transform: scale(.55) rotate(45deg); } 55% { opacity: .65; transform: scale(1) rotate(135deg) translateY(-4px); } 100% { opacity: 0; transform: scale(.2) rotate(225deg) translateY(-12px); } }
 @keyframes buzz-flight { 0% { opacity: 0; transform: scale(.05); } 18% { opacity: 1; transform: scale(.48); } 45% { opacity: 1; transform: scale(1); } 68% { opacity: 1; transform: scale(1.03); } 80% { opacity: 1; transform: translate(12vw, -5vh) scale(.9); } 100% { opacity: 0; transform: translate(125vw, -55vh) scale(.06); } }
-@keyframes buzz-rotation { 0% { transform: rotate(-360deg); } 68% { transform: rotate(0); } 80% { transform: rotate(20deg); } 100% { transform: rotate(90deg); } }
-@keyframes burst-particle { 0% { opacity: 0; transform: rotate(var(--burst-angle)) translateY(0) scale(.1); } 12% { opacity: 1; transform: rotate(var(--burst-angle)) translateY(-16px) scale(1); } 100% { opacity: 0; transform: rotate(var(--burst-angle)) translateY(calc(var(--burst-distance) * -1)) scale(.3); } }
+@keyframes buzz-pinwheel { 0% { transform: scale(.05) rotate(-420deg); } 60% { transform: scale(1.08) rotate(18deg); } 100% { transform: scale(1) rotate(0); } }
+@keyframes buzz-wiggle { 0%, 100% { transform: translateY(0) rotate(0); } 25% { transform: translateY(-7px) rotate(-2deg); } 75% { transform: translateY(6px) rotate(2deg); } }
+@keyframes burst-particle { 0% { opacity: 0; transform: rotate(var(--burst-angle)) translateY(0) scale(.1); } 18% { opacity: 1; transform: rotate(var(--burst-angle)) translateY(-20px) scale(1); } 100% { opacity: 0; transform: rotate(var(--burst-angle)) translateY(calc(var(--burst-distance) * -1)) scale(.25); } }
 @keyframes lantern-flicker { 0%, 100% { opacity: .5; transform: translateY(0); } 50% { opacity: 1; transform: translateY(-3px); } }
 @keyframes lantern-flicker { 0%, 100% { opacity: .5; transform: translateY(0); } 50% { opacity: 1; transform: translateY(-3px); } }
 @keyframes route-pulse { from { transform: rotate(45deg) scale(1); } to { transform: rotate(45deg) scale(1.13); } }
