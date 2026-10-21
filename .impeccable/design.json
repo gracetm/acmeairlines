@@ -1,0 +1,157 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-21T00:00:00Z",
+  "title": "Design System: CloudPilot",
+  "extensions": {
+    "colorMeta": {
+      "ink": { "role": "neutral", "displayName": "Ink", "tonalRamp": ["oklch(15% 0 0)", "oklch(26% 0 0)", "oklch(38% 0 0)", "oklch(49% 0 0)", "oklch(61% 0 0)", "oklch(72% 0 0)", "oklch(84% 0 0)", "oklch(95% 0 0)"] },
+      "white": { "role": "neutral", "displayName": "White Canvas", "tonalRamp": ["oklch(15% 0 0)", "oklch(26% 0 0)", "oklch(38% 0 0)", "oklch(49% 0 0)", "oklch(61% 0 0)", "oklch(72% 0 0)", "oklch(84% 0 0)", "oklch(95% 0 0)"] },
+      "action": { "role": "primary", "displayName": "Near-black Action", "tonalRamp": ["oklch(15% 0 0)", "oklch(26% 0 0)", "oklch(38% 0 0)", "oklch(49% 0 0)", "oklch(61% 0 0)", "oklch(72% 0 0)", "oklch(84% 0 0)", "oklch(95% 0 0)"] },
+      "action-hover": { "role": "primary", "displayName": "Deep Blue-gray Hover", "tonalRamp": ["oklch(15% 0.029 218)", "oklch(26% 0.029 218)", "oklch(38% 0.029 218)", "oklch(49% 0.029 218)", "oklch(61% 0.029 218)", "oklch(72% 0.029 218)", "oklch(84% 0.029 218)", "oklch(95% 0.029 218)"] },
+      "ice": { "role": "primary", "displayName": "Ice Panel", "tonalRamp": ["oklch(15% 0.01 232)", "oklch(26% 0.01 232)", "oklch(38% 0.01 232)", "oklch(49% 0.01 232)", "oklch(61% 0.01 232)", "oklch(72% 0.01 232)", "oklch(84% 0.01 232)", "oklch(95% 0.01 232)"] },
+      "focus": { "role": "primary", "displayName": "Focus Teal", "tonalRamp": ["oklch(15% 0.073 216)", "oklch(26% 0.073 216)", "oklch(38% 0.073 216)", "oklch(49% 0.073 216)", "oklch(61% 0.073 216)", "oklch(72% 0.073 216)", "oklch(84% 0.073 216)", "oklch(95% 0.073 216)"] },
+      "field-surface": { "role": "neutral", "displayName": "Pale Field Surface", "tonalRamp": ["oklch(15% 0.004 218)", "oklch(26% 0.004 218)", "oklch(38% 0.004 218)", "oklch(49% 0.004 218)", "oklch(61% 0.004 218)", "oklch(72% 0.004 218)", "oklch(84% 0.004 218)", "oklch(95% 0.004 218)"] },
+      "field-border": { "role": "neutral", "displayName": "Gray-blue Field Border", "tonalRamp": ["oklch(15% 0.015 224)", "oklch(26% 0.015 224)", "oklch(38% 0.015 224)", "oklch(49% 0.015 224)", "oklch(61% 0.015 224)", "oklch(72% 0.015 224)", "oklch(84% 0.015 224)", "oklch(95% 0.015 224)"] },
+      "scope-idle": { "role": "neutral", "displayName": "Idle Region Surface", "tonalRamp": ["oklch(15% 0.002 197)", "oklch(26% 0.002 197)", "oklch(38% 0.002 197)", "oklch(49% 0.002 197)", "oklch(61% 0.002 197)", "oklch(72% 0.002 197)", "oklch(84% 0.002 197)", "oklch(95% 0.002 197)"] },
+      "scope-text": { "role": "neutral", "displayName": "Slate Region Label", "tonalRamp": ["oklch(15% 0.012 231)", "oklch(26% 0.012 231)", "oklch(38% 0.012 231)", "oklch(49% 0.012 231)", "oklch(61% 0.012 231)", "oklch(72% 0.012 231)", "oklch(84% 0.012 231)", "oklch(95% 0.012 231)"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Hero Display", "purpose": "Desktop hero headline; responsive sizes are recorded in DESIGN.md." },
+      "headline": { "displayName": "Section Headline", "purpose": "Heavy, tightly tracked section headings." },
+      "title": { "displayName": "Group Title", "purpose": "Footer navigation group headings; other card titles have contextual sizes." },
+      "body": { "displayName": "Supporting Copy", "purpose": "Desktop hero and section descriptions, not a universal paragraph size." },
+      "label": { "displayName": "Action Label", "purpose": "Desktop primary button labels." }
+    },
+    "shadows": [
+      { "name": "search-results", "value": "0 12px 35px #23485124", "purpose": "Floating destination results." },
+      { "name": "mobile-navigation", "value": "0 10px 30px #274c5b1a", "purpose": "Expanded mobile menu." },
+      { "name": "dialog", "value": "0 24px 100px #17363c38", "purpose": "Modal elevation above the blurred backdrop." },
+      { "name": "airplane", "value": "drop-shadow(0 18px 12px #3d657313)", "purpose": "CSS filter on the isolated airplane, not a box-shadow." },
+      { "name": "search-focus", "value": "0 0 0 3px #508e9b", "purpose": "Search focus-within ring; not ambient elevation." }
+    ],
+    "motion": [
+      { "name": "button-state", "value": "background-color 180ms, color 180ms, border-color 180ms", "purpose": "Button state transitions with default CSS ease." },
+      { "name": "photo-zoom", "value": "transform 400ms cubic-bezier(.16,1,.3,1)", "purpose": "Destination image hover scales to 1.045." },
+      { "name": "destination-arrow", "value": "opacity 180ms", "purpose": "Reveal arrow on destination hover or keyboard focus." },
+      { "name": "faq-icon", "value": "transform 180ms", "purpose": "Rotate plus SVG 45 degrees for an open disclosure." },
+      { "name": "airplane-entry", "value": "take-flight 1.3s cubic-bezier(.16,1,.3,1) both", "purpose": "One entry from translateX(-53%) translateY(20px) rotate(3deg) to translateX(-50%) rotate(4deg)." },
+      { "name": "anchor-scroll", "value": "smooth", "purpose": "HTML scroll-behavior; auto under prefers-reduced-motion." },
+      { "name": "reduced-motion", "value": "none", "purpose": "prefers-reduced-motion: reduce disables all animations and transitions." }
+    ],
+    "breakpoints": [
+      { "name": "mobile-max", "value": "767px" },
+      { "name": "grid-md-min", "value": "48rem" },
+      { "name": "compact-max", "value": "900px" },
+      { "name": "desktop-compact-max", "value": "1199px" },
+      { "name": "wide-min", "value": "1600px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Black action used for inquiries and dialog submission; desktop and mobile rules match the source.",
+      "html": "<button type=\"button\" class=\"ds-button\">Become a partner</button>",
+      "css": ".ds-button{display:inline-flex;justify-content:center;align-items:center;min-height:52px;padding:13px 25px;border:1px solid #050505;border-radius:6px;background:#050505;color:#fff;font-family:var(--font-sans,'Manrope',sans-serif);font-size:14px;font-weight:500;line-height:1.4;cursor:pointer;transition:background-color 180ms,color 180ms,border-color 180ms}.ds-button:hover{background:#2b4147;border-color:#2b4147}.ds-button:focus-visible{outline:3px solid #367d8e;outline-offset:5px}@media(max-width:767px){.ds-button{min-height:46px;font-size:12px;padding:12px 22px}}@media(prefers-reduced-motion:reduce){.ds-button{transition:none}}"
+    },
+    {
+      "name": "Register Button",
+      "kind": "button",
+      "refersTo": "button-register",
+      "description": "Pill-shaped header action; mobile values follow the later shared button override.",
+      "html": "<button type=\"button\" class=\"ds-register\">Register</button>",
+      "css": ".ds-register{display:inline-flex;justify-content:center;align-items:center;min-height:40px;padding:10px 25px;border:1px solid #050505;border-radius:25px;background:#050505;color:#fff;font-family:var(--font-sans,'Manrope',sans-serif);font-size:13px;font-weight:500;line-height:1.4;cursor:pointer;transition:background-color 180ms,color 180ms,border-color 180ms}.ds-register:hover{background:#2b4147;border-color:#2b4147}.ds-register:focus-visible{outline:3px solid #367d8e;outline-offset:5px}@media(max-width:767px){.ds-register{min-height:46px;font-size:12px;padding:12px 22px}}@media(prefers-reduced-motion:reduce){.ds-register{transition:none}}"
+    },
+    {
+      "name": "Icon Button",
+      "kind": "button",
+      "refersTo": "button-icon",
+      "description": "Transparent search icon control with pale hover fill and visible focus.",
+      "html": "<button type=\"button\" class=\"ds-icon\" aria-label=\"Search destinations\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"m21 21-4.34-4.34\"/><circle cx=\"11\" cy=\"11\" r=\"8\"/></svg></button>",
+      "css": ".ds-icon{display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;width:40px;height:44px;padding:0;border:0;border-radius:8px;background:transparent;color:#6e7578;cursor:pointer;transition:background-color 180ms,color 180ms,border-color 180ms}.ds-icon:hover{background:#edf5f7;color:#111}.ds-icon:focus-visible{outline:3px solid #367d8e;outline-offset:5px}@media(prefers-reduced-motion:reduce){.ds-icon{transition:none}}"
+    },
+    {
+      "name": "App Store Badge",
+      "kind": "button",
+      "refersTo": "button-store",
+      "description": "Local-demo app download action with inline source artwork.",
+      "html": "<button type=\"button\" class=\"ds-store\" aria-label=\"Download on the App Store\"><svg width=\"23\" height=\"27\" viewBox=\"0 0 24 28\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M17.1 4.5c1.1-1.3 1.8-3 1.6-4.5-1.6.1-3.4 1.1-4.5 2.3-1 1.1-1.9 2.9-1.6 4.5 1.7.1 3.4-.9 4.5-2.3ZM21 14.8c0-3 2.5-4.5 2.6-4.6-1.4-2.1-3.6-2.4-4.4-2.4-1.9-.2-3.7 1.2-4.7 1.2s-2.5-1.2-4.1-1.1C8.3 8 6.4 9.2 5.3 11c-2.2 3.8-.6 9.5 1.5 12.5 1 1.5 2.1 3 3.7 2.9 1.5-.1 2.1-.9 4-.9s2.5.9 4.1.9c1.7 0 2.7-1.5 3.6-2.9 1.1-1.6 1.6-3.2 1.6-3.3-.1 0-2.8-1.1-2.8-5.4Z\" transform=\"translate(-3 0)\"/></svg><span><small>Download on the</small><strong>App Store</strong></span></button>",
+      "css": ".ds-store{display:flex;align-items:center;height:40px;gap:7px;padding:4px 9px;border:0;border-radius:5px;background:#000;color:#fff;text-align:left;font-family:var(--font-sans,'Manrope',sans-serif);cursor:pointer;transition:background-color 180ms,color 180ms,border-color 180ms}.ds-store small{display:block;font-size:8px;line-height:1.1}.ds-store strong{display:block;font-size:14px;font-weight:500;line-height:1.3}.ds-store:hover{background:#2b4147}.ds-store:focus-visible{outline:3px solid #367d8e;outline-offset:5px}@media(max-width:767px){.ds-store{padding:5px 7px;height:37px;gap:5px}.ds-store svg{width:18px;height:22px}.ds-store strong{font-size:12px}.ds-store small{font-size:7px}}@media(prefers-reduced-motion:reduce){.ds-store{transition:none}}"
+    },
+    {
+      "name": "Google Play Badge",
+      "kind": "button",
+      "refersTo": "button-store",
+      "description": "Matching store-button variant; the multicolor mark is artwork, not a UI palette.",
+      "html": "<button type=\"button\" class=\"ds-play\" aria-label=\"Get it on Google Play\"><svg width=\"23\" height=\"25\" viewBox=\"0 0 24 26\" aria-hidden=\"true\"><path fill=\"#40d4ed\" d=\"M1 1v24l13-12Z\"/><path fill=\"#62dd9d\" d=\"m1 1 16 9-3 3Z\"/><path fill=\"#ffd057\" d=\"m17 10 6 3-6 3-3-3Z\"/><path fill=\"#ff677c\" d=\"m1 25 16-9-3-3Z\"/></svg><span><small>Get it on</small><strong>Google Play</strong></span></button>",
+      "css": ".ds-play{display:flex;align-items:center;height:40px;gap:7px;padding:4px 9px;border:0;border-radius:5px;background:#000;color:#fff;text-align:left;font-family:var(--font-sans,'Manrope',sans-serif);cursor:pointer;transition:background-color 180ms,color 180ms,border-color 180ms}.ds-play small{display:block;font-size:8px;line-height:1.1}.ds-play strong{display:block;font-size:14px;font-weight:500;line-height:1.3}.ds-play:hover{background:#2b4147}.ds-play:focus-visible{outline:3px solid #367d8e;outline-offset:5px}@media(max-width:767px){.ds-play{padding:5px 7px;height:37px;gap:5px}.ds-play svg{width:18px;height:22px}.ds-play strong{font-size:12px}.ds-play small{font-size:7px}}@media(prefers-reduced-motion:reduce){.ds-play{transition:none}}"
+    },
+    {
+      "name": "Dialog Field",
+      "kind": "input",
+      "refersTo": "field",
+      "description": "Labeled pale field used by the local demo forms; native email validation is preserved.",
+      "html": "<label class=\"ds-field\">Email address<input name=\"email\" type=\"email\" autocomplete=\"email\" placeholder=\"you@example.com\" required /></label>",
+      "css": ".ds-field{display:grid;gap:8px;min-width:0;color:#151515;font-family:var(--font-sans,'Manrope',sans-serif);font-size:13px;font-weight:600}.ds-field input{width:100%;min-width:0;padding:12px;border:1px solid #cbd8dd;border-radius:7px;background:#f8fbfc;color:inherit;font-family:inherit;font-size:14px;font-weight:400;caret-color:#367d8e}.ds-field input:focus-visible{outline:3px solid #367d8e;outline-offset:5px}"
+    },
+    {
+      "name": "Main Navigation",
+      "kind": "nav",
+      "refersTo": "navigation",
+      "description": "Desktop navigation links within the inset header; this isolated preview shows links, while the app owns mobile toggle state.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"Main navigation\"><a href=\"#home\">Home</a><a href=\"#flights\">Flights</a><a href=\"#destinations\">Destinations</a><a href=\"#flights\">Deals</a><a href=\"#about\">About Us</a><a href=\"#support\">Support</a></nav>",
+      "css": ".ds-nav{display:flex;align-items:center;gap:29px;min-height:80px;padding:16px 35px 16px 46px;border-radius:30px;background:#fff;font-family:var(--font-sans,'Manrope',sans-serif)}.ds-nav a{font-size:14px;color:#707070;text-decoration:none}.ds-nav a:hover{color:#000}.ds-nav a:focus-visible{outline:3px solid #367d8e;outline-offset:5px}@media(max-width:1199px){.ds-nav{gap:18px;padding-inline:25px}.ds-nav a{font-size:12px}}@media(max-width:900px){.ds-nav{gap:12px;padding-inline:20px}.ds-nav a{font-size:11px}}@media(max-width:767px){.ds-nav{display:grid;grid-template-columns:1fr 1fr;gap:4px;min-height:0;padding:15px;border-radius:18px;box-shadow:0 10px 30px #274c5b1a}.ds-nav a{padding:12px;font-size:14px}}"
+    },
+    {
+      "name": "Region Toggles",
+      "kind": "chip",
+      "refersTo": "scope-idle",
+      "description": "Independent pressed-state button groups in destination and route sections; selected and idle appearances shown together.",
+      "html": "<div class=\"ds-scopes\" role=\"group\" aria-label=\"Destination region\"><button type=\"button\" class=\"ds-scope\" aria-pressed=\"true\">Domestic</button><button type=\"button\" class=\"ds-scope\" aria-pressed=\"false\">International</button></div>",
+      "css": ".ds-scopes{display:flex;justify-content:center;gap:8px}.ds-scope{min-width:149px;min-height:52px;padding:15px 25px;border:0;border-radius:6px;color:#626a6e;background:#eff1f1;font-family:var(--font-sans,'Manrope',sans-serif);font-size:14px;line-height:1.5;cursor:pointer;transition:background-color 180ms,color 180ms,border-color 180ms}.ds-scope:hover{background:#dfeaec}.ds-scope[aria-pressed=true]{color:#fff;background:#050505}.ds-scope:focus-visible{outline:3px solid #367d8e;outline-offset:5px}@media(max-width:767px){.ds-scope{min-width:120px;min-height:46px;padding:12px 18px;font-size:12px}}@media(prefers-reduced-motion:reduce){.ds-scope{transition:none}}"
+    },
+    {
+      "name": "Flight Route Card",
+      "kind": "card",
+      "refersTo": "flight-card",
+      "description": "Flat, pale route button with paired endpoints and a circular airplane marker.",
+      "html": "<button type=\"button\" class=\"ds-route\"><span class=\"ds-origin\"><strong>Dhaka</strong><span>Hazrat Shahjalal I.</span></span><span class=\"ds-plane\" aria-hidden=\"true\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z\"/></svg></span><span class=\"ds-endpoint\"><strong>Cox’s Bazar</strong><span>Cox’s Bazar Airport</span></span></button>",
+      "css": ".ds-route{display:flex;align-items:center;justify-content:space-between;width:100%;min-height:86px;padding:17px 31px;background:var(--color-ice,#f0f7fb);border:1px solid #e4edf1;border-radius:10px;color:#45494b;font-family:var(--font-sans,'Manrope',sans-serif);cursor:pointer;transition:background-color 180ms,color 180ms,border-color 180ms}.ds-route:hover{border-color:#8cbdc8;background:#e6f2f6}.ds-route:focus-visible{outline:3px solid #367d8e;outline-offset:5px}.ds-origin{text-align:left}.ds-endpoint{text-align:right}.ds-route strong,.ds-origin>span,.ds-endpoint>span{display:block;font-size:16px;line-height:1.5}.ds-route strong{font-weight:600}.ds-plane{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;color:#8bbce2;background:#e6f3fe;border:5px solid #ebf6fd;border-radius:50%;transform:rotate(45deg)}@media(max-width:1199px){.ds-route{padding-inline:20px}.ds-route strong,.ds-origin>span,.ds-endpoint>span{font-size:14px}}@media(max-width:900px){.ds-route{padding-inline:15px}}@media(max-width:767px){.ds-route{min-height:78px;padding:16px 21px}.ds-route strong,.ds-origin>span,.ds-endpoint>span{font-size:13px}}@media(prefers-reduced-motion:reduce){.ds-route{transition:none}}"
+    },
+    {
+      "name": "FAQ Disclosure",
+      "kind": "custom",
+      "refersTo": "accordion",
+      "description": "Native expandable FAQ; keyboard interaction and open-state rotation work without a framework.",
+      "html": "<div class=\"ds-faq\"><details class=\"ds-question\"><summary><span>Q. What is CloudPilot Flight?</span><svg width=\"17\" height=\"17\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12h14M12 5v14\"/></svg></summary><p>CloudPilot brings destination inspiration and flight planning together in one simple place. This interactive preview lets you explore routes and plan your next adventure.</p></details></div>",
+      "css": ".ds-faq{border:1px solid #eceff1;border-radius:12px;overflow:hidden;color:var(--color-ink,#0a0a0a);font-family:var(--font-sans,'Manrope',sans-serif)}.ds-question+.ds-question{border-top:1px solid #e9ecef}.ds-question summary{display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:68px;padding:19px 23px;font-size:15px;font-weight:600;line-height:1.5;list-style:none;cursor:pointer}.ds-question summary::-webkit-details-marker{display:none}.ds-question summary:hover{background:#f8fbfc}.ds-question summary:focus-visible{outline:3px solid #367d8e;outline-offset:5px}.ds-question summary svg{flex-shrink:0;transition:transform 180ms}.ds-question[open] summary svg{transform:rotate(45deg)}.ds-question>p{margin:0;padding:0 50px 22px 23px;font-size:15px;line-height:1.75;color:#51585a}@media(max-width:767px){.ds-question summary{padding:18px 16px;font-size:12px;line-height:1.6}.ds-question>p{padding:0 20px 20px 16px;font-size:13px}}@media(prefers-reduced-motion:reduce){.ds-question summary svg{transition:none}}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Muted cyan sky, white canvas",
+    "overview": "CloudPilot pairs photographic clouds and a large isolated passenger airplane with neutral sans-serif lettering, black controls, and gently rounded destination photography. This phrase describes the built OWN-WORLD contract; it introduces no new visual direction. The user-provided screenshot pins the palette, composition, CloudPilot name, and spacious character.\n\nThe React/TypeScript, Tailwind CSS 4 frontend uses custom CSS for its visual identity and utility classes for flex/grid composition. Local imagery closely matches the reference rather than reproducing its exact assets; provenance lives in ASSETS.md. This record follows the shipped source, with the supplied desktop/mobile captures as composition evidence. The reported finish verdict is ship at two-fix scope: cloud contrast and text contrast resolved.",
+    "keyCharacteristics": [
+      "Muted cyan photographic atmosphere fading into white.",
+      "Heavy Manrope headlines, quiet supporting text, and black actions.",
+      "Rounded photographic tiles and pale, mostly flat information panels.",
+      "Generous desktop spacing that compresses into stacked mobile sections."
+    ],
+    "rules": [
+      { "name": "The Contrast Separation Rule", "body": "Keep the built dark text on pale surfaces and white labels over darkened destination images; cloud photography remains softened behind copy.", "section": "colors" },
+      { "name": "The Flat Surface Rule", "body": "Keep routes and testimonials flat at rest; reserve the existing diffuse shadows for overlays and the airplane.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do preserve the screenshot-pinned cyan clouds, white canvas, black actions, and spacious composition.",
+      "Do use the actual Manrope hierarchy and responsive overrides recorded here.",
+      "Do retain the softened cloud layers, dark supporting text, destination scrims, and visible keyboard focus.",
+      "Do keep local imagery provenance in ASSETS.md and demo interactions explicit."
+    ],
+    "donts": [
+      "Don't replace the built atmosphere or section composition with a new visual direction.",
+      "Don't add ambient shadows to flat route or testimonial cards.",
+      "Don't treat illustrative photography, testimonials, or local confirmations as verified locations, customer evidence, or live bookings.",
+      "Don't promote the two reference-specific tagline pills into a reusable eyebrow or kicker system."
+    ]
+  }
+}
