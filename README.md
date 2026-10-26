@@ -37,15 +37,15 @@ The first deploy creates the `acme-air` Worker and prints its `workers.dev` URL.
 npm run cf:dev
 ```
 
-### Add `air.tmgracee.online`
+### Add `acmeair.thestagingshire.com`
 
 1. Make sure `tmgracee.online` is added to the same Cloudflare account and its nameservers point to Cloudflare.
 2. In **Workers & Pages**, open the `acme-air` Worker.
 3. Open **Settings** → **Domains & Routes** → **Add** → **Custom Domain**.
-4. Enter `air.tmgracee.online` and confirm.
+4. Enter `acmeair.thestagingshire.com` and confirm.
 5. Cloudflare creates the DNS record and certificate automatically. Do not change the existing root or assessment-demo records.
 
-Use `air.tmgracee.online` as the separate Acme Air address. A different subdomain such as `acme.tmgracee.online` works the same way.
+Use `https://acmeair.thestagingshire.com` as the Acme Air address. The Wrangler config also records this custom domain so future `npm run cf:deploy` commands preserve the binding.
 
 For automatic deployments, connect this GitHub repository in **Workers & Pages** → **Create application** → **Import a repository**, then use `npm run build` as the build command and `dist` as the assets directory. Keep the CLI deployment path as a reliable fallback.
 
