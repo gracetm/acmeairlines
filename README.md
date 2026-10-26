@@ -15,11 +15,39 @@ Open the local URL printed by Vite. The development preview for this session run
 
 ```sh
 npm run build   # TypeScript checks and production build
-npm run preview # Serve the production build
-npm test        # Playwright interaction and responsive checks
+    npm run preview # Serve the production build
+    npm test        # Playwright interaction and responsive checks
 ```
 
 Tests use an installed Google Chrome browser. Install Chrome or update `playwright.config.ts` to use a Playwright-managed browser.
+
+## Deploy to Cloudflare Workers
+
+This project uses Workers Static Assets. Wrangler uploads the Vite `dist` directory to Cloudflare and serves unknown paths with `index.html` for SPA navigation.
+
+```sh
+npm install
+npx wrangler login
+npm run cf:deploy
+```
+
+The first deploy creates the `acme-air` Worker and prints its `workers.dev` URL. Local Cloudflare preview is available with:
+
+```sh
+npm run cf:dev
+```
+
+### Add `air.tmgracee.online`
+
+1. Make sure `tmgracee.online` is added to the same Cloudflare account and its nameservers point to Cloudflare.
+2. In **Workers & Pages**, open the `acme-air` Worker.
+3. Open **Settings** → **Domains & Routes** → **Add** → **Custom Domain**.
+4. Enter `air.tmgracee.online` and confirm.
+5. Cloudflare creates the DNS record and certificate automatically. Do not change the existing root or assessment-demo records.
+
+Use `air.tmgracee.online` as the separate Acme Air address. A different subdomain such as `acme.tmgracee.online` works the same way.
+
+For automatic deployments, connect this GitHub repository in **Workers & Pages** → **Create application** → **Import a repository**, then use `npm run build` as the build command and `dist` as the assets directory. Keep the CLI deployment path as a reliable fallback.
 
 ## Included
 
